@@ -1,0 +1,118 @@
+// Text and Pattern Matching using Naive Algorithm
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main()
+{
+    char text[100], pattern[100];
+    int i, j, textLen, patLen, found = 0;
+
+    cout << "Enter the Text: ";
+    cin.getline(text, 100);
+
+    cout << "Enter the Pattern: ";
+    cin.getline(pattern, 100);
+
+    textLen = strlen(text);
+    patLen = strlen(pattern);
+
+    // Pattern Matching
+    for(i = 0; i <= textLen - patLen; i++)
+    {
+        for(j = 0; j < patLen; j++)
+        {
+            if(text[i + j] != pattern[j])
+                break;
+        }
+
+        if(j == patLen)
+        {
+            cout << "Pattern found at position: " << i + 1 << endl;
+            found = 1;
+        }
+    }
+
+    if(found == 0)
+    {
+        cout << "Pattern not found";
+    }
+
+    return 0;
+}
+
+--------------------
+OUTPUT
+--------------------
+
+Enter the Text: BharathiKanmani
+Enter the Pattern: Kan
+
+Pattern found at position: 9
+
+// Closest Pair Problem using Brute Force Method
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    int n, i, j;
+    float x[100], y[100];
+    float minDist, dist;
+    int p1, p2;
+
+    cout << "Enter number of points: ";
+    cin >> n;
+
+    // Input points
+    for(i = 0; i < n; i++)
+    {
+        cout << "Enter x and y coordinates of point " << i + 1 << ": ";
+        cin >> x[i] >> y[i];
+    }
+
+    // Initial distance
+    minDist = sqrt(pow(x[1] - x[0], 2) + pow(y[1] - y[0], 2));
+    p1 = 0;
+    p2 = 1;
+
+    // Finding closest pair
+    for(i = 0; i < n; i++)
+    {
+        for(j = i + 1; j < n; j++)
+        {
+            dist = sqrt(pow(x[j] - x[i], 2) + pow(y[j] - y[i], 2));
+
+            if(dist < minDist)
+            {
+                minDist = dist;
+                p1 = i;
+                p2 = j;
+            }
+        }
+    }
+
+    cout << "\nClosest Pair of Points:\n";
+    cout << "(" << x[p1] << ", " << y[p1] << ") and ";
+    cout << "(" << x[p2] << ", " << y[p2] << ")" << endl;
+
+    cout << "Minimum Distance = " << minDist;
+
+    return 0;
+}
+
+------------------
+OUTPUT
+------------------
+Enter number of points: 4
+
+Enter x and y coordinates of point 1: 2 3
+Enter x and y coordinates of point 2: 4 5
+Enter x and y coordinates of point 3: 1 1
+Enter x and y coordinates of point 4: 3 4
+
+Closest Pair of Points:
+(2, 3) and (3, 4)
+
+Minimum Distance = 1.41421
